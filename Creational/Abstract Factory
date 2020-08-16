@@ -1,0 +1,194 @@
+/* ------------------------------------------------------------------- */
+
+public interface Tyre {
+    
+    public void design();
+    
+    public void manufacture();
+    
+}
+
+public class CarTyre implements Tyre {
+    
+    CarTyre() {
+    }
+    
+    @Override
+    public void design() {
+    }
+    
+    @Override
+    public void manufacture() {
+    }
+    
+}
+
+public class TruckTyre implements Tyre {
+    
+    TruckTyre() {
+    }
+    
+    @Override
+    public void design() {
+    }
+    
+    @Override
+    public void manufacture() {
+    }
+      
+}
+
+/* ------------------------------------------------------------------- */
+
+public interface Engine {
+    
+    public void design();
+    
+    public void manufacture();
+    
+}
+
+public class CarEngine implements Engine {
+    
+    CarEngine() {
+    }
+    
+    @Override
+    public void design() {
+    }
+    
+    @Override
+    public void manufacture() {
+    }
+    
+}
+
+public class TruckEngine implements Engine {
+    
+    TruckEngine() {
+    }
+    
+    @Override
+    public void design() {
+    }
+    
+    @Override
+    public void manufacture() {
+    }
+    
+}
+
+/* ------------------------------------------------------------------- */
+
+public abstract class Factory {
+    
+    private static Factory carFactory = null;
+    private static Factory truckFactory = null;
+    
+    public abstract Engine getEngine();
+    public abstract Tyre getTyre();
+    
+    public static Factory getFactory(String vehicleType)
+        throws UnknownVehicleException {
+        
+        if(vehicleType == null) {
+            return null;
+        }
+        
+        Factory factory = null;
+        switch(vehicleType) {
+            case "car":
+                if(carFactory == null)
+                    carFactory  = new CarFactory();
+                factory = carFactory;
+                break;
+
+            case "truck":
+                if(truckFactory == null)
+                    truckFactory  = new TruckFactory();
+                factory = truckFactory;
+                break;
+            
+            default:
+                throw new UnknownVehicleException();
+        }
+        return factory;
+    }
+    
+}
+
+public class CarFactory extends Factory {
+    
+    @Override
+    public Engine getEngine() {
+        return new CarEngine();
+    }
+
+    @Override
+    public Tyre getTyre() {
+        return new CarTyre();
+    }
+    
+}
+
+public class TruckFactory extends Factory {
+    
+    @Override
+    public Engine getEngine() {
+        return new TruckEngine();
+    }
+
+    @Override
+    public Tyre getTyre() {
+        return new TruckTyre();
+    }
+    
+}
+
+/* ------------------------------------------------------------------- */
+
+public class Client {
+    
+    public static void main(String []args) {
+        
+        String vehicleType;
+        Factory factory;
+        
+        try {
+            
+            factory = Factory.getFactory(vehicleType);
+            
+            Engine engine = factory.getEngine();
+            engine.design();
+            engine.manufacture();
+            
+            Tyre tyre = factory.getTyre();
+            tyre.design();
+            tyre.manufacture();
+            
+        } catch (UnknownVehicleException e) {
+            
+        }  
+        
+    }
+    
+}
+
+/* ------------------------------------------------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
