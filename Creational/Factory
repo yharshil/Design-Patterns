@@ -1,6 +1,11 @@
+/* ------------------------------------------------------------------- */
+
 public interface Vehicle {
+
     void design();
+
     void manufacture();
+
 }
 
 public class Car implements Vehicle {
@@ -17,6 +22,7 @@ public class Car implements Vehicle {
     public void manufacture() {
         System.out.println("Manufacturing car");
     }
+
 }
 
 public class Truck implements Vehicle {
@@ -33,7 +39,10 @@ public class Truck implements Vehicle {
     public void manufacture() {
         System.out.println("Manufacturing truck");
     }
+
 }
+
+/* ------------------------------------------------------------------- */
 
 public class VehicleFactory {
     
@@ -58,7 +67,10 @@ public class VehicleFactory {
         }
         return vehicle;
     }
+
 }
+
+/* ------------------------------------------------------------------- */
 
 public class FactoryClient {
     
@@ -75,7 +87,7 @@ public class FactoryClient {
     
 }
 
-
+/* ------------------------------------------------------------------- */
 
 
 
