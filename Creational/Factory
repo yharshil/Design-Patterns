@@ -1,0 +1,96 @@
+public interface Vehicle {
+    void design();
+    void manufacture();
+}
+
+public class Car implements Vehicle {
+    
+    Car() {
+    }
+    
+    @Override
+    public void design() {
+        System.out.println("Designing car");
+    }
+    
+    @Override
+    public void manufacture() {
+        System.out.println("Manufacturing car");
+    }
+}
+
+public class Truck implements Vehicle {
+    
+    Truck() {
+    }
+    
+    @Override
+    public void design() {
+        System.out.println("Designing truck");
+    }
+    
+    @Override
+    public void manufacture() {
+        System.out.println("Manufacturing truck");
+    }
+}
+
+public class VehicleFactory {
+    
+    public Vehicle getVehicle(String vehicleType) 
+        throws VehicleNotFoundException {
+        
+        if(vehicleType == null) {
+            return null;
+        }
+        
+        Vehicle vehicle = null;
+        
+        switch(vehicleType) {
+            case "car" : 
+                vehicle = new Car();
+                break;
+            case "truck" :
+                vehicle = new Truck();
+                break;
+            default :
+                throw new VehicleNotFoundException();
+        }
+        return vehicle;
+    }
+}
+
+public class FactoryClient {
+    
+    public static void main(String []args) {
+        String vehicleType;
+        VehicleFactory vehicleFactory = new VehicleFactory();
+        try {
+            Vehicle vehicle = vehicleFactory.getVehicle(vehicleType);
+            vehicle.design();
+            vehicle.manufacture();
+        } catch (VehicleNotFoundException e) {
+        }
+    }
+    
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
